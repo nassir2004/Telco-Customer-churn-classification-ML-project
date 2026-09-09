@@ -80,7 +80,7 @@ total_services = st.sidebar.slider(
 )
 
 st.sidebar.markdown("---")
-st.sidebar.caption("💡 **Tip:** Real-time numerical feature tweaking dynamically recalculates risk probability.")
+st.sidebar.caption("💡 **Tip:** Adjust metrics and click 'Calculate Churn Risk Probability' below to evaluate.")
 
 # =========================================================
 # MAIN PAGE CATEGORICAL INPUTS
@@ -121,9 +121,7 @@ st.markdown("<br>", unsafe_allow_html=True)
 # Predict Button
 predict_btn = st.button("🔮 Calculate Churn Risk Probability", use_container_width=True)
 
-if predict_btn or 'prediction_done' in st.session_state:
-    st.session_state['prediction_done'] = True
-    
+if predict_btn:
     # Construct input dataframe
     input_df = pd.DataFrame([{
         'gender': gender,
@@ -215,3 +213,7 @@ if predict_btn or 'prediction_done' in st.session_state:
         
     for rec in recs:
         st.markdown(f"- {rec}")
+else:
+    st.markdown("---")
+    st.info("👈 Adjust the customer metrics on the sidebar/form and click 'Calculate Churn Risk Probability' to generate results.")
+
